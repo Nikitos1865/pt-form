@@ -1,56 +1,94 @@
 <template>
-    <div>
-        <!-- @data-change="printData($event)" -->
-        <vue-form-checkbox @emit-table-data="updateData" :column-names="['Ind', 'Sup', 'SBA', 'CGA', 'Min', 'Mod', 'Max']" :row-names="['clof', 'goal']" :prompt="'Self-Care'" :headings="['Grooming', 'Toileting', 'Bathing', 'Dressing UE', 'Dressing LE', 'Don/Doff Shoes Socks']"/>
-        <vue-form-checkbox @emit-table-data="updateData" :column-names="['Ind', 'Sup', 'SBA', 'CGA', 'Min', 'Mod', 'Max']" :row-names="['clof', 'goal']" :prompt="'Transfers'" :headings="['In/Out Bed', 'Sit/Stand', 'Toilet', 'Chair', 'Floor', 'Shower', 'Car']"/>
-        <vue-form-checkbox @emit-table-data="updateData" :column-names="['these', 'are', 'column', 'names']" :row-names="['modular', 'sections', 'here']" :prompt="'Modular Title'" :headings="['These', 'Sections', 'Are', 'Custom']"></vue-form-checkbox>
-        <button @click="onSubmit()">Submit</button>
-        <p></p>
-    </div>
+  <div>
+    <!-- @data-change="printData($event)" -->
+    <vue-form-checkbox
+      @emit-table-data="updateData"
+      :column-names="['Ind', 'Sup', 'SBA', 'CGA', 'Min', 'Mod', 'Max']"
+      :row-names="['clof', 'goal']"
+      :prompt="'Self-Care'"
+      :headings="[
+        'Grooming',
+        'Toileting',
+        'Bathing',
+        'Dressing UE',
+        'Dressing LE',
+        'Don/Doff Shoes Socks',
+      ]"
+      :data="data"
+    />
+    <vue-form-checkbox
+      @emit-table-data="updateData"
+      :column-names="['Ind', 'Sup', 'SBA', 'CGA', 'Min', 'Mod', 'Max']"
+      :row-names="['clof', 'goal']"
+      :prompt="'Transfers'"
+      :headings="[
+        'In/Out Bed',
+        'Sit/Stand',
+        'Toilet',
+        'Chair',
+        'Floor',
+        'Shower',
+        'Car',
+      ]"
+    />
+    <vue-form-checkbox
+      @emit-table-data="updateData"
+      :column-names="['these', 'are', 'column', 'names']"
+      :row-names="['modular', 'sections', 'here']"
+      :prompt="'Modular Title'"
+      :headings="['These', 'Sections', 'Are', 'Custom']"
+    ></vue-form-checkbox>
+    <button @click="onSubmit()">Submit</button>
+    <p></p>
+  </div>
 </template>
 
-
 <script>
-import VueFormCheckbox from "./VueFormCheckbox.vue"
+import VueFormCheckbox from "./VueFormCheckbox.vue";
 
 export default {
-    name: "table-parent",
-    components: {
-        VueFormCheckbox
+  name: "table-parent",
+  components: {
+    VueFormCheckbox,
+  },
+  provide() {
+    return {
+      data: this.data,
+    };
+  },
+  data() {
+    return {
+      table: null,
+      finalTable: null,
+      data: {
+        Groomingclof: "Ind",
+        Groominggoal: "Sup",
+      },
+    };
+  },
+  methods: {
+    makeDataObject() {
+      if (!this.table) {
+        this.table = {};
+      }
     },
-    data() {
-        return{
-            table:null,
-            finalTable: null
-        }
+
+    updateData(tableData) {
+      this.makeDataObject();
+      let tableObjectName = tableData.tableName;
+      this.table[tableObjectName] = tableData.tableData;
     },
-    methods: {
 
-        makeDataObject() {
-            if(!this.table) {
-                this.table = {}
-            }
-        },
+    printData(values) {
+      console.log(values);
+      this.rows.push(values);
+      //Object.defineProperty(this.rows, "row", {value: values.row1})
+    },
 
-        updateData(tableData) {
-            this.makeDataObject(); 
-            let tableObjectName = tableData.tableName
-            this.table[tableObjectName] = tableData.tableData
-            
-        },
-
-    
-        printData(values) {
-            console.log(values)
-            this.rows.push(values)
-            //Object.defineProperty(this.rows, "row", {value: values.row1})
-        },
-
-        onSubmit() {
-           // this.rows.push(values)
-            console.log(this.table)
-        }
-    }
-
-    }
+    onSubmit() {
+      // this.rows.push(values)
+      console.log(this.data);
+    },
+  },
+};
 </script>

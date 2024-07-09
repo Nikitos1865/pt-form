@@ -1,10 +1,10 @@
 <template>
-    <div class="functional-activities--container">
+    <div class="functional-activities__container">
         <h2 class="functional-activities--header">Container Title</h2>
-        <activity-box :prompt="'Open door'" class="functional-activities--activity-box"></activity-box>
-        <activity-box :prompt="'Lift objects'" class="functional-activities--activity-box"></activity-box>
-        <activity-box :prompt="'Up/down Step'" class="functional-activities--activity-box"></activity-box>
-        <activity-box :prompt="'Carry objects'" class="functional-activities--activity-box"></activity-box>
+        <activity-box :model="{safeUnsafe: 'OPEN_DOOR_SAFE_UNSAFE', deviceUsed:'OPEN_DOOR_DEVICE_USED' }" prompt="Open door" class="functional-activities--activity-box"></activity-box>
+        <activity-box prompt="Lift objects" class="functional-activities--activity-box"></activity-box>
+        <activity-box prompt="Up/down Step" class="functional-activities--activity-box"></activity-box>
+        <activity-box prompt="Carry objects" class="functional-activities--activity-box"></activity-box>
     </div>
 </template>
 
@@ -20,9 +20,8 @@
         data() {
             return {
                 data: {
-                    'Open door': 'Safe',
-                    'Up/down Step': 'Unsafe',
-                    'Open doortext': "auto-populated device"
+                    'OPEN_DOOR_SAFE_UNSAFE': 'Safe',
+                    'OPEN_DOOR_DEVICE_USED': "auto-populated device"
                 }
             }
         }, 
@@ -36,11 +35,15 @@
 
 <style lang="scss">
     .functional-activities{
-        &--container {
+        &__container {
             display: flex; 
             flex-wrap: wrap;
             width: 50%; 
             height: 200px; 
+        &--active {
+            border-style: solid; 
+            border-color: black; 
+        }
         }
 
         &--header{
@@ -78,8 +81,10 @@
     
     }   
 
+
     label {
         margin-top: 10px;
+
     }
 
 </style>

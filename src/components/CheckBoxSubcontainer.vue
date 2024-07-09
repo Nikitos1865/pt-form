@@ -40,13 +40,13 @@ export default {
     rowName: String,
   },
   inject: ["data"],
-  data() {
-    return {
-      instance: {
-        inputChoice: null,
-      },
-    };
-  },
+  // data() {
+  //   return {
+  //     instance: {
+  //       inputChoice: null,
+  //     },
+  //   };
+  // },
   computed: {
     returnNumberArray() {
       return Array.from({ length: this.count }, (_, i) => i + 1);
@@ -58,34 +58,35 @@ export default {
       return heading + rowName;
     },
   },
-  watch: {
-    "instance.inputChoice"(selection) {
-      const selObj = {
-        objRowName: this.rowName,
-        objSelection: selection,
-      };
+  // watch: {
+  //   "instance.inputChoice"(selection) {
+  //     const selObj = {
+  //       objRowName: this.rowName,
+  //       objSelection: selection,
+  //     };
 
-      //console.log(this.rowName+": "+selection)
-      this.$emit("selectionMade", selObj);
-      //console.log(this.data.inputChoice)
-    },
-    "instance.Groomingclof": function () {
-      // this.$.data = value;
-    },
-  },
+  //     //console.log(this.rowName+": "+selection)
+  //     this.$emit("selectionMade", selObj);
+  //     //console.log(this.data.inputChoice)
+  //   },
+    
+  //   "instance.Groomingclof": function () {
+  //     // this.$.data = value;
+  //   },
+  // },
   methods: {
     getButtonName() {
       let x = this.returnButtonName;
       console.log(x);
     },
 
-    createDataObject() {
-      let newObj = {};
-      this.columnNames.forEach((columnName) => {
-        newObj[columnName] = "";
-      });
-      return newObj;
-    },
+    // createDataObject() {
+    //   let newObj = {};
+    //   this.columnNames.forEach((columnName) => {
+    //     newObj[columnName] = "";
+    //   });
+    //   return newObj;
+    // },
   },
   mounted() {
     // const key = this.returnButtonName;

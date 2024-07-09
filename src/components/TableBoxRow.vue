@@ -39,7 +39,5 @@ export default {
       this.$emit("emit-row", rowValObj);
     },
   },
-  //todo: make watchers for all the radio buttons and emit them to parent, which emits them to parent
-  watch: {},
 };
 </script>

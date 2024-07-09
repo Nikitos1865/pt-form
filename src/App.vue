@@ -3,6 +3,7 @@
     <hello-world />
     <vue-formulate />
     <table-parent/>
+    <functional-activities /> 
     
   </div>
 </template>
@@ -11,6 +12,8 @@
 import VueFormulate from './components/VueFormulate.vue'
 import HelloWorld from './components/HelloWorld.vue'
 import TableParent from './components/TableParent.vue'
+import FunctionalActivities from './components/FunctionalActivities.vue'
+
 
 
 
@@ -20,7 +23,8 @@ export default {
   components: {
     VueFormulate,
     HelloWorld, 
-    TableParent
+    TableParent, 
+    FunctionalActivities
   },
   methods: {
     setData(value) {
